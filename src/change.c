@@ -15,37 +15,42 @@ static DivisionResult division(uint32_t a, uint32_t b) {
 const char *coin_type_to_str(CoinType coin) {
   switch (coin) {
   case RAPPEN_1:
-    return "  1 Rp.";
+    return "   1 Rp.";
   case RAPPEN_5:
-    return "  5 Rp.";
+    return "   5 Rp.";
   case RAPPEN_10:
-    return " 10 Rp.";
+    return "  10 Rp.";
   case RAPPEN_20:
-    return " 20 Rp.";
+    return "  20 Rp.";
   case RAPPEN_50:
-    return " 50 Rp.";
+    return "  50 Rp.";
   case FRANKEN_1:
-    return "  1 Fr.";
+    return "   1 Fr.";
   case FRANKEN_2:
-    return "  2 Fr.";
+    return "   2 Fr.";
   case FRANKEN_5:
-    return "  5 Fr.";
+    return "   5 Fr.";
   case FRANKEN_10:
-    return " 10 Fr.";
+    return "  10 Fr.";
   case FRANKEN_20:
-    return " 20 Fr.";
+    return "  20 Fr.";
   case FRANKEN_50:
-    return " 50 Fr.";
+    return "  50 Fr.";
   case FRANKEN_100:
-    return "100 Fr.";
+    return " 100 Fr.";
+  case FRANKEN_200:
+    return " 200 Fr.";
+  case FRANKEN_1000:
+    return "1000 Fr.";
   }
 }
 
 void change_find(uint32_t change,
                  void (*output_fn)(uint32_t amount, CoinType coin)) {
   CoinType coins[] = {
-      FRANKEN_100, FRANKEN_50, FRANKEN_20, FRANKEN_10, FRANKEN_5, FRANKEN_2,
-      FRANKEN_1,   RAPPEN_50,  RAPPEN_20,  RAPPEN_10,  RAPPEN_5,
+      FRANKEN_1000, FRANKEN_200, FRANKEN_100, FRANKEN_50, FRANKEN_20,
+      FRANKEN_10,   FRANKEN_5,   FRANKEN_2,   FRANKEN_1,  RAPPEN_50,
+      RAPPEN_20,    RAPPEN_10,   RAPPEN_5,
   };
   const int coins_count = sizeof(coins) / sizeof(coins[0]);
   for (int i = 0; i < coins_count; i++) {

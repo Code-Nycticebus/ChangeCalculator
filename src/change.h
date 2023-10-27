@@ -16,6 +16,8 @@ typedef enum CoinType {
   FRANKEN_20 = 2000,
   FRANKEN_50 = 5000,
   FRANKEN_100 = 10000,
+  FRANKEN_200 = 20000,
+  FRANKEN_1000 = 100000,
 } CoinType;
 
 const char *coin_type_to_str(CoinType coin);
