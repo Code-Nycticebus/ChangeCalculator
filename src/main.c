@@ -55,7 +55,8 @@ DivisionResult division(uint32_t a, uint32_t b) {
   };
 }
 
-void find_change(uint32_t change) {
+void find_change(uint32_t change,
+                 void (*output_fn)(uint32_t amount, CoinType coin)) {
   CoinType coins[] = {
       FRANKEN_100, FRANKEN_50, FRANKEN_20, FRANKEN_10, FRANKEN_5, FRANKEN_2,
       FRANKEN_1,   RAPPEN_50,  RAPPEN_20,  RAPPEN_10,  RAPPEN_5,
@@ -64,14 +65,17 @@ void find_change(uint32_t change) {
   for (int i = 0; i < coins_count; i++) {
     DivisionResult res = division(change, coins[i]);
     if (0 < res.divisor) {
-      printf("% 2d x %s\n", res.divisor, coin_type_to_str(coins[i]));
+      output_fn(res.divisor, coins[i]);
       change -= coins[i] * res.divisor;
     }
     if (res.remainder == 0) {
       return;
     }
   }
-  printf("Remains: %d Rp.\n", change);
+}
+
+static void print_output(uint32_t amount, CoinType coin) {
+  printf("% 2d x %s\n", amount, coin_type_to_str(coin));
 }
 
 int main(int argc, const char *argv[]) {
@@ -86,5 +90,5 @@ int main(int argc, const char *argv[]) {
     fprintf(stderr, "Invalid input!\n");
     return EXIT_FAILURE;
   }
-  find_change(change);
+  find_change(change, print_output);
 }
