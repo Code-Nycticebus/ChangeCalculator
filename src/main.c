@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 typedef enum CoinType {
+  RAPPEN_1 = 1,
   RAPPEN_5 = 5,
   RAPPEN_10 = 10,
   RAPPEN_20 = 20,
@@ -18,6 +19,8 @@ typedef enum CoinType {
 
 const char *coin_type_to_str(CoinType coin) {
   switch (coin) {
+  case RAPPEN_1:
+    return "  1 Rp.";
   case RAPPEN_5:
     return "  5 Rp.";
   case RAPPEN_10:
@@ -72,6 +75,7 @@ void find_change(uint32_t change,
       return;
     }
   }
+  output_fn(change, RAPPEN_1);
 }
 
 static void print_output(uint32_t amount, CoinType coin) {
