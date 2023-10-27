@@ -12,6 +12,35 @@ static DivisionResult division(uint32_t a, uint32_t b) {
   };
 }
 
+const char *coin_type_to_str(CoinType coin) {
+  switch (coin) {
+  case RAPPEN_1:
+    return "  1 Rp.";
+  case RAPPEN_5:
+    return "  5 Rp.";
+  case RAPPEN_10:
+    return " 10 Rp.";
+  case RAPPEN_20:
+    return " 20 Rp.";
+  case RAPPEN_50:
+    return " 50 Rp.";
+  case FRANKEN_1:
+    return "  1 Fr.";
+  case FRANKEN_2:
+    return "  2 Fr.";
+  case FRANKEN_5:
+    return "  5 Fr.";
+  case FRANKEN_10:
+    return " 10 Fr.";
+  case FRANKEN_20:
+    return " 20 Fr.";
+  case FRANKEN_50:
+    return " 50 Fr.";
+  case FRANKEN_100:
+    return "100 Fr.";
+  }
+}
+
 void change_find(uint32_t change,
                  void (*output_fn)(uint32_t amount, CoinType coin)) {
   CoinType coins[] = {
