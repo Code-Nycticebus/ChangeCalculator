@@ -12,7 +12,7 @@ static DivisionResult division(uint32_t a, uint32_t b) {
   };
 }
 
-void find_change(uint32_t change,
+void change_find(uint32_t change,
                  void (*output_fn)(uint32_t amount, CoinType coin)) {
   CoinType coins[] = {
       FRANKEN_100, FRANKEN_50, FRANKEN_20, FRANKEN_10, FRANKEN_5, FRANKEN_2,

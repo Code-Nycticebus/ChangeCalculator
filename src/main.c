@@ -20,5 +20,5 @@ int main(int argc, const char *argv[]) {
     fprintf(stderr, "Invalid input!\n");
     return EXIT_FAILURE;
   }
-  find_change(change, print_output);
+  change_find(change, print_output);
 }

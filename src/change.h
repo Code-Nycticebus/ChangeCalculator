@@ -20,7 +20,7 @@ typedef enum CoinType {
 
 const char *coin_type_to_str(CoinType coin);
 
-void find_change(uint32_t change,
+void change_find(uint32_t change,
                  void (*output_fn)(uint32_t amount, CoinType coin));
 
 #endif
