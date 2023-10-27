@@ -45,19 +45,19 @@ const char *coin_type_to_str(CoinType coin) {
   }
 }
 
-void change_find(uint32_t change,
-                 void (*output_fn)(uint32_t amount, CoinType coin)) {
-  CoinType coins[] = {
+void change_find(uint32_t change, coin_output_fn output_fn) {
+  static const CoinType coins[] = {
       FRANKEN_1000, FRANKEN_200, FRANKEN_100, FRANKEN_50, FRANKEN_20,
       FRANKEN_10,   FRANKEN_5,   FRANKEN_2,   FRANKEN_1,  RAPPEN_50,
       RAPPEN_20,    RAPPEN_10,   RAPPEN_5,
   };
-  const int coins_count = sizeof(coins) / sizeof(coins[0]);
+  static const int coins_count = sizeof(coins) / sizeof(coins[0]);
+
   for (int i = 0; i < coins_count; i++) {
-    DivisionResult res = division(change, coins[i]);
+    const DivisionResult res = division(change, coins[i]);
     if (0 < res.divisor) {
       output_fn(res.divisor, coins[i]);
-      change -= coins[i] * res.divisor;
+      change = res.remainder;
     }
     if (res.remainder == 0) {
       return;

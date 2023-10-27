@@ -20,9 +20,10 @@ typedef enum CoinType {
   FRANKEN_1000 = 100000,
 } CoinType;
 
+typedef void (*coin_output_fn)(uint32_t amount, CoinType coin);
+
 const char *coin_type_to_str(CoinType coin);
 
-void change_find(uint32_t change,
-                 void (*output_fn)(uint32_t amount, CoinType coin));
+void change_find(uint32_t change, coin_output_fn output_fn);
 
 #endif
